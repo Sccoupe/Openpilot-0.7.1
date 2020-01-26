@@ -186,7 +186,7 @@ if ANDROID:
   persistent_processes += [
     'logcatd',
     'tombstoned',
-    'updated',
+    #'updated',
   ]
 
 car_started_processes = [
