@@ -256,24 +256,30 @@ def thermald_thread():
       last_update = now
     dt = now - last_update
 
-    if dt.days > DAYS_NO_CONNECTIVITY_MAX:
-      if current_connectivity_alert != "expired":
-        current_connectivity_alert = "expired"
-        params.delete("Offroad_ConnectivityNeededPrompt")
-        params.put("Offroad_ConnectivityNeeded", json.dumps(OFFROAD_ALERTS["Offroad_ConnectivityNeeded"]))
-    elif dt.days > DAYS_NO_CONNECTIVITY_PROMPT:
-      remaining_time = str(DAYS_NO_CONNECTIVITY_MAX - dt.days)
-      if current_connectivity_alert != "prompt" + remaining_time:
-        current_connectivity_alert = "prompt" + remaining_time
-        alert_connectivity_prompt = copy.copy(OFFROAD_ALERTS["Offroad_ConnectivityNeededPrompt"])
-        alert_connectivity_prompt["text"] += remaining_time + " days."
-        params.delete("Offroad_ConnectivityNeeded")
-        params.put("Offroad_ConnectivityNeededPrompt", json.dumps(alert_connectivity_prompt))
-    elif current_connectivity_alert is not None:
-      current_connectivity_alert = None
-      params.delete("Offroad_ConnectivityNeeded")
-      params.delete("Offroad_ConnectivityNeededPrompt")
+    #if dt.days > DAYS_NO_CONNECTIVITY_MAX:
+    #  if current_connectivity_alert != "expired":
+    #    current_connectivity_alert = "expired"
+    #    params.delete("Offroad_ConnectivityNeededPrompt")
+    #    params.put("Offroad_ConnectivityNeeded", json.dumps(OFFROAD_ALERTS["Offroad_ConnectivityNeeded"]))
+    #elif dt.days > DAYS_NO_CONNECTIVITY_PROMPT:
+    #  remaining_time = str(DAYS_NO_CONNECTIVITY_MAX - dt.days)
+    #  if current_connectivity_alert != "prompt" + remaining_time:
+    #    current_connectivity_alert = "prompt" + remaining_time
+    #    alert_connectivity_prompt = copy.copy(OFFROAD_ALERTS["Offroad_ConnectivityNeededPrompt"])
+    #    alert_connectivity_prompt["text"] += remaining_time + " days."
+    #    params.delete("Offroad_ConnectivityNeeded")
+    #    params.put("Offroad_ConnectivityNeededPrompt", json.dumps(alert_connectivity_prompt))
+    #elif current_connectivity_alert is not None:
+    #  current_connectivity_alert = None
+    #  params.delete("Offroad_ConnectivityNeeded")
+    #  params.delete("Offroad_ConnectivityNeededPrompt")
 
+    # 2019.10.29, removed connectivity check
+    current_connectivity_alert = None
+    params.delete("Offroad_ConnectivityNeeded")
+    params.delete("Offroad_ConnectivityNeededPrompt")
+    
+    
     # start constellation of processes when the car starts
     ignition = health is not None and (health.health.ignitionLine or health.health.ignitionCan)
 
