@@ -551,7 +551,7 @@ def controlsd_thread(sm=None, pm=None, can_sock=None):
   # controlsd is driven by can recv, expected at 100Hz
   rk = Ratekeeper(100, print_delay_threshold=None)
 
-  internet_needed = params.get("Offroad_ConnectivityNeeded", encoding='utf8') is not None
+  internet_needed = False #params.get("Offroad_ConnectivityNeeded", encoding='utf8') is not None
 
   prof = Profiler(False)  # off by default
 
