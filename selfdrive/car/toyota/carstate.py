@@ -8,6 +8,9 @@ from selfdrive.car.toyota.values import CAR, DBC, STEER_THRESHOLD, TSS2_CAR, NO_
 
 GearShifter = car.CarState.GearShifter
 
+CAN_CAMERA_OFFSET = 0.06
+#CAN_CAMERA_OFFSET = cp.vl["CAN_TUNING"]['CAN_CAMERA_OFFSET_DATA']
+
 def parse_gear_shifter(gear, vals):
 
   val_to_capnp = {'P': GearShifter.park, 'R': GearShifter.reverse, 'N': GearShifter.neutral,
@@ -206,5 +209,4 @@ class CarState():
 
     self.stock_aeb = bool(cp_cam.vl["PRE_COLLISION"]["PRECOLLISION_ACTIVE"] and cp_cam.vl["PRE_COLLISION"]["FORCE"] < -1e-5)
     
-    CAN_CAMERA_OFFSET = 0.06
-    #CAN_CAMERA_OFFSET = cp.vl["CAN_TUNING"]['CAN_CAMERA_OFFSET_DATA']
+
