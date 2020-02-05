@@ -6,8 +6,6 @@ from opendbc.can.parser import CANParser
 from selfdrive.config import Conversions as CV
 from selfdrive.car.toyota.values import CAR, DBC, STEER_THRESHOLD, TSS2_CAR, NO_DSU_CAR
 
-CAN_CAMERA_OFFSET = 0.06
-
 GearShifter = car.CarState.GearShifter
 
 def parse_gear_shifter(gear, vals):
@@ -76,6 +74,7 @@ def get_can_parser(CP):
     
   if CP.carFingerprint == CAR.COROLLA:
     signals += [("ZORRO_STEER", "SECONDARY_STEER_ANGLE", 0)]
+    signals += [("CAN_CAMERA_OFFSET_DATA", "CAN_TUNING", 0)]
 
   if CP.carFingerprint == CAR.PRIUS:
     signals += [("STATE", "AUTOPARK_STATUS", 0)]
@@ -206,3 +205,6 @@ class CarState():
       self.generic_toggle = bool(cp.vl["LIGHT_STALK"]['AUTO_HIGH_BEAM'])
 
     self.stock_aeb = bool(cp_cam.vl["PRE_COLLISION"]["PRECOLLISION_ACTIVE"] and cp_cam.vl["PRE_COLLISION"]["FORCE"] < -1e-5)
+    
+    CAN_CAMERA_OFFSET = 0.06
+    #CAN_CAMERA_OFFSET = cp.vl["CAN_TUNING"]['CAN_CAMERA_OFFSET_DATA']
