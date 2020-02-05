@@ -6,6 +6,8 @@ from opendbc.can.parser import CANParser
 from selfdrive.config import Conversions as CV
 from selfdrive.car.toyota.values import CAR, DBC, STEER_THRESHOLD, TSS2_CAR, NO_DSU_CAR
 
+CAN_CAMERA_OFFSET = 0.06
+
 GearShifter = car.CarState.GearShifter
 
 def parse_gear_shifter(gear, vals):
