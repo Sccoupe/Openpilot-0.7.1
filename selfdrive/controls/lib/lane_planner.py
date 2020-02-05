@@ -1,9 +1,8 @@
 from common.numpy_fast import interp
 import numpy as np
 from cereal import log
-from selfdrive.car.toyota.carstate import CAN_CAMERA_OFFSET
 
-CAMERA_OFFSET = CAN_CAMERA_OFFSET   #0.06  # m from center car to camera Increase if too far left 0.03 at a time.
+CAMERA_OFFSET = car.carstate.CAN_CAMERA_OFFSET   #0.06  # m from center car to camera Increase if too far left 0.03 at a time.
 
 def compute_path_pinv(l=50):
   deg = 3
