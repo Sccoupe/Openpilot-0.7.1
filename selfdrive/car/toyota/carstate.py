@@ -8,7 +8,7 @@ from selfdrive.car.toyota.values import CAR, DBC, STEER_THRESHOLD, TSS2_CAR, NO_
 
 GearShifter = car.CarState.GearShifter
 
-CAN_CAMERA_OFFSET = 0.06
+#CAN_CAMERA_OFFSET = 0.06
 #CAN_CAMERA_OFFSET = cp.vl["CAN_TUNING"]['CAN_CAMERA_OFFSET_DATA']
 
 def parse_gear_shifter(gear, vals):
