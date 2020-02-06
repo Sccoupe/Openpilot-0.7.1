@@ -207,7 +207,7 @@ class CarState():
 
     self.stock_aeb = bool(cp_cam.vl["PRE_COLLISION"]["PRECOLLISION_ACTIVE"] and cp_cam.vl["PRE_COLLISION"]["FORCE"] < -1e-5)
     
-    if cp.vl["CAN_TUNING"]['CAN_TUNE_ENABLE'] == 1 
+    if cp.vl["CAN_TUNING"]['CAN_TUNE_ENABLE'] == 1: 
       CAN_CAMERA_OFFSET = cp.vl["CAN_TUNING"]['CAN_CAMERA_OFFSET_DATA']
     else:
       CAN_CAMERA_OFFSET = 0.06
