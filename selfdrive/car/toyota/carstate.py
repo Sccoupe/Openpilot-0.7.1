@@ -74,6 +74,9 @@ def get_can_parser(CP):
     
   if CP.carFingerprint == CAR.COROLLA:
     signals += [("ZORRO_STEER", "SECONDARY_STEER_ANGLE", 0)]
+    
+  if CP.carFingerprint == CAR.COROLLA_ZSS:
+    signals += [("ZORRO_STEER", "SECONDARY_STEER_ANGLE", 0)]
 
   if CP.carFingerprint == CAR.PRIUS:
     signals += [("STATE", "AUTOPARK_STATUS", 0)]
