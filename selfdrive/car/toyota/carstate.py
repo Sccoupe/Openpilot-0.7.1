@@ -72,9 +72,6 @@ def get_can_parser(CP):
   if CP.carFingerprint in NO_DSU_CAR:
     signals += [("STEER_ANGLE", "STEER_TORQUE_SENSOR", 0)]
     
-  if CP.carFingerprint == CAR.COROLLA:
-    signals += [("ZORRO_STEER", "SECONDARY_STEER_ANGLE", 0)]
-    
   if CP.carFingerprint == CAR.COROLLA_ZSS:
     signals += [("ZORRO_STEER", "SECONDARY_STEER_ANGLE", 0)]
 
@@ -168,9 +165,10 @@ class CarState():
       if abs(angle_wheel) > 1e-3 and abs(self.angle_steers) > 1e-3 and not self.init_angle_offset:
         self.init_angle_offset = True
         self.angle_offset = self.angle_steers - angle_wheel
-    else:
-      #self.angle_steers = cp.vl["STEER_ANGLE_SENSOR"]['STEER_ANGLE'] + cp.vl["STEER_ANGLE_SENSOR"]['STEER_FRACTION']
+    elif CP.carFingerprint == CAR.COROLLA_ZSS:
       self.angle_steers = cp.vl["SECONDARY_STEER_ANGLE"]['ZORRO_STEER'] - self.angle_offset
+    else:
+      self.angle_steers = cp.vl["STEER_ANGLE_SENSOR"]['STEER_ANGLE'] + cp.vl["STEER_ANGLE_SENSOR"]['STEER_FRACTION']
     self.angle_steers_rate = cp.vl["STEER_ANGLE_SENSOR"]['STEER_RATE']
     can_gear = int(cp.vl["GEAR_PACKET"]['GEAR'])
     self.gear_shifter = parse_gear_shifter(can_gear, self.shifter_values)
