@@ -112,6 +112,16 @@ class CarInterface(CarInterfaceBase):
       ret.mass = 2860. * CV.LB_TO_KG + STD_CARGO_KG  # mean between normal and hybrid
       ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.2], [0.05]] #Lower kp to lessen oscilation
       ret.lateralTuning.pid.kf = 0.00003   # full torque for 20 deg at 80mph means 0.00007818594
+      
+    elif candidate == CAR.COROLLA_ZSS:
+      stop_and_go = False
+      ret.safetyParam = 100
+      ret.wheelbase = 2.70
+      ret.steerRatio = 18.27
+      tire_stiffness_factor = 0.444  # not optimized yet
+      ret.mass = 2860. * CV.LB_TO_KG + STD_CARGO_KG  # mean between normal and hybrid
+      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.6], [0.1]]
+      ret.lateralTuning.pid.kf = 0.00007818594
 
     elif candidate == CAR.LEXUS_RXH:
       stop_and_go = True
